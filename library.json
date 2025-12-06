@@ -55,7 +55,7 @@
     {
       "name": "ESPAsyncWebServer",
       "version": "https://github.com/me-no-dev/ESPAsyncWebServer",
-      "platforms": ["espressif32", "espressif8266"]
+      "platforms": ["espressif32"]
     }  
   ],
   "license": "MIT",

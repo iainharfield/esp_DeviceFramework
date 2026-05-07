@@ -380,7 +380,7 @@ void mqttTopicsubscribe(const char *topic, int qos)
 
 void mqttDisconnect()
 {
-  if (mqttClient.connected())
+  if (!mqttClient.connected())
   {
     mqttLog("MQTT Disconnect requested: Already Disconnected.", REPORT_WARN, true, true);
   }

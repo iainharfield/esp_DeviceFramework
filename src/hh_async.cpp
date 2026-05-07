@@ -380,7 +380,11 @@ void mqttTopicsubscribe(const char *topic, int qos)
 
 void mqttDisconnect()
 {
-  mqttClient.disconnect(false);   // FIXTHIS changed to false 20/11/2024
+  if (mqttClient.connected())
+  {
+    mqttLog("MQTT Disconnect requested: Already Disconnected.", REPORT_WARN, true, true);
+  }
+  mqttClient.disconnect(false);   // false == force
 }
 
 bool mqttGetConnectedStatus()

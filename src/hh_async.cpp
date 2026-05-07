@@ -530,7 +530,7 @@ void onMqttDisconnect(AsyncMqttClientDisconnectReason reason)
     mqttLog(MQTTDisconnectMessage.c_str(), REPORT_ERROR, false, true);
     // END
     //mqttReconnectTimer.once(5, connectToMqtt);   //FIXTYHIS : Set up a repeating ticker and cancel when connected.  If "once" fails, MQTT connection is never established
-    mqttReconnectTimer.attach(5, connectToMqtt);   // detached in two cases. 1) wiFi Disconnected 2) MQTT Connected
+    mqttReconnectTimer.attach(0.5, connectToMqtt);   // detached in two cases. 1) wiFi Disconnected 2) MQTT Connected
   }
 }
 

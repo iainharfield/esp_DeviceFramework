@@ -413,7 +413,8 @@ void connectToWifi()
 
 void connectToMqtt()
 {
-  mqttClient.disconnect(false); // FIXTHIS changed to false 20/11/2024.  Think about removing this line.
+  // FIXTHIS: 09052026 following line commented out - dont think its needed
+  //mqttClient.disconnect(false); // FIXTHIS changed to false 20/11/2024.  Think about removing this line.
   //Serial.println("Platform: Connecting to MQTT...");
   mqttLog("Connecting to MQTT...", REPORT_WARN, true, true);
 
@@ -432,7 +433,8 @@ void connectToMqtt()
   mqttClient.setWill(willTopic, 1, true, "Offline"); // Check Case
   mqttClient.connect(); //FIXTHIS what happens if connection to MQTT Broker fails?
   // FIXTHIS: Sometimes connect does not work and you dont know. keep reconnecting until onConnect stops the ticker.
-  mqttReconnectTimer.once(5, connectToMqtt);   //FIXTHIS : Set up a repeating ticker and cancel when connected.
+  // FIXTHIS: 09052026 following line commented out - dont think its needed
+  //mqttReconnectTimer.once(5, connectToMqtt);   //FIXTHIS : Set up a repeating ticker and cancel when connected.
 }
 
 
@@ -529,7 +531,7 @@ void onMqttDisconnect(AsyncMqttClientDisconnectReason reason)
     MQTTDisconnectMessage = "Reconnecting to MQTT Broker. Disconnect Reason:" + String(static_cast<uint8_t>(reason));
     mqttLog(MQTTDisconnectMessage.c_str(), REPORT_ERROR, false, true);
     // END
-    mqttReconnectTimer.once(0.5, connectToMqtt);   //FIXTYHIS : Set up a repeating ticker and cancel when connected.  If "once" fails, MQTT connection is never established
+    mqttReconnectTimer.once(0.5, connectToMqtt);   //FIXTHIS : Set up a ticker and cancel when connected.  
     //mqttReconnectTimer.attach(0.5, connectToMqtt);   // detached in two cases. 1) wiFi Disconnected 2) MQTT Connected
   }
 }

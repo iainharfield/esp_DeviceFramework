@@ -512,7 +512,7 @@ void onMqttConnect(bool sessionPresent)
   // set last known state
   mqttLog(willTopic, REPORT_INFO, true, true);
   //FIXTHIS: Why Send QOS==1 and Retained==true?
-  mqttClient.publish(willTopic, 0, true, "online"); //QOS == 1, Retain == true changed to QOS == 0 20/11/2024
+  mqttClient.publish(willTopic, 1, true, "online"); //QOS == 1, Retain == true changed to QOS == 0 20/11/2024
 }
 
 void onMqttDisconnect(AsyncMqttClientDisconnectReason reason)
@@ -531,7 +531,7 @@ void onMqttDisconnect(AsyncMqttClientDisconnectReason reason)
     MQTTDisconnectMessage = "Reconnecting to MQTT Broker. Disconnect Reason:" + String(static_cast<uint8_t>(reason));
     mqttLog(MQTTDisconnectMessage.c_str(), REPORT_ERROR, false, true);
     // END
-    mqttReconnectTimer.once(0.5, connectToMqtt);   //FIXTHIS : Set up a ticker and cancel when connected.  
+    mqttReconnectTimer.once(1, connectToMqtt);   //FIXTHIS : Set up a ticker and cancel when connected.  
     //mqttReconnectTimer.attach(0.5, connectToMqtt);   // detached in two cases. 1) wiFi Disconnected 2) MQTT Connected
   }
 }

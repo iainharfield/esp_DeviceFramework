@@ -475,12 +475,12 @@ void onWifiDisconnected()
 
   todUpdateTimer.detach(); // if no wifi dont use NTP - seems to cause huge delays
 
-  telnetStop();   // FIXTHIS: Added to clean up any telenet sessions
-
   mqttLog("Disconnected from Wi-Fi.", REPORT_ERROR ,false, true);
 
+  telnetStop();   // FIXTHIS: Added to clean up any telenet sessions
+
   // FIXTHIS 230523: Adding this to test failed reconnections - could be a router issue?
-  delay(1000);    //is this needed?
+  //delay(1000);    //is this needed?
   ESP.restart();
 }
 

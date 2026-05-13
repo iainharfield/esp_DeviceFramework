@@ -405,6 +405,7 @@ void connectToWifi()
   {
     Serial.println("Connecting to Wi-Fi...");
     // WiFi.mode(WIFI_STA);
+    WiFi.setSleep(WIFI_PS_NONE);
     WiFi.begin(Router_SSID, Router_Pass);
   }
   else
